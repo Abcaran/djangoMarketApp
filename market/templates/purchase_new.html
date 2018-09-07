@@ -1,9 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Nova compra</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Salvar</button>
-    </form>
+	<div class="container my-4">
+		<font face="helvetica" color="#4267B2FF"><h2><b>Nova compra</b></h2></font>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<form method="POST" class="post-form">{% csrf_token %}
+        		{{ form.as_p }}
+				<button type="submit" class="save btn btn-primary my-2">Salvar</button></form>
+			</div>
+		</div>
+	</div>  
+    
+        
+    
 {% endblock %}

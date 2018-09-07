@@ -1,57 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<p></p>
-	<font face="helvetica" color="#4267B2FF"><h4 align="center"><b>Lista de Compras</b></h4></font>
-	<p></p>
+	<div class="container my-4">
+		<font face="helvetica" color="#4267B2FF"><h2 align="center"><b>Lista de Compras</b></h2></font>
+	</div>
+	
+	<div class="container">
+		<table class="table table-hover table-bordered table-primary">
+		  <thead class="bg-primary">
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Produto</th>
+		      <th scope="col">Quantidade</th>
+		      <th scope="col">Total</th>
+		      <th scope="col">Preço Médio</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% for purchase in all_purchases %}
+		    <tr onload="funcao('{{ purchase.total_price }}','{{ purchase.amount }}','{{ purchase.id }}')">
+		      <th scope="row">{{ purchase.id }}</th>
+		      <td>{{ purchase.product }}</td>
+		      <td>{{ purchase.amount }}</td>
+		      <td>R$ {{ purchase.total_price }}</td>
+		      <td>R$ {{ purchase.avrg_price }}</td>
+		    </tr>
+		    {% endfor %}
+		  </tbody>
+		</table>
+	</div>
 
-	<table class="table table-hover table-primary">
-	  <thead>
-	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">Produto</th>
-	      <th scope="col">Quantidade</th>
-	      <th scope="col">Total</th>
-	      <th scope="col">Preço Médio</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  	{% for purchase in all_purchases %}
-	    <tr onload="funcao('{{ purchase.total_price }}','{{ purchase.amount }}','{{ purchase.id }}')">
-	      <th scope="row">{{ purchase.id }}</th>
-	      <td>{{ purchase.product }}</td>
-	      <td>{{ purchase.amount }}</td>
-	      <td>R$ {{ purchase.total_price }}</td>
-	      <td>R$ {{ purchase.avrg_price }}</td>
-	      <!-- <td>
-			<button onclick="funcao('{{ purchase.total_price }}','{{ purchase.amount }}','{{ purchase.id }}')"
-					type="button" 
-					class="btn btn-default btn-sm">
-				Sim
-			</button>
-	      </td>
-	      <td id="{{ purchase.id }}">
-		  </td> -->
-	    </tr>
-	    {% endfor %}
-	  </tbody>
-	</table>
-
-	<script type="text/javascript">
-		
-		function funcao(total_price, amount, id){
-			var total = parseFloat(total_price)
-			var am = parseFloat(amount)
-			var retorno = (total/am)
-
-			var td = document.getElementById(id);
-			var texto = 'R$ '+retorno.toString();
-
-			document.getElementById(id).firstChild.data = texto;
-
-			return
-		}
-
-	</script>
 {% endblock %}
 
