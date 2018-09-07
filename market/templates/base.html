@@ -1,0 +1,53 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<title>Sistema Web de Compras</title>
+		<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	    <link href={% static "css/market.css" %} rel="stylesheet" />
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+
+		<div class="jumbotron text-center" style="margin-bottom:0">
+		  <h1>Sistema Web de Compras</h1>
+		</div>
+
+		<nav class="navbar navbar-expand-sm bg-primary navbar-dark justify-content-center">
+		  <a class="navbar-brand" href="#">Início</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+		    <ul class="navbar-nav">
+		      <li class="nav-item">
+		      	<a href="{% url 'product_new' %}" class="nav-link">Cadastro de Produtos</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="{% url 'purchase_new' %}">Compra de Produtos</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="{% url 'purchase_list' %}">Listagem de Compras</a>
+		      </li>    
+		    </ul>
+		  </div>  
+		</nav>
+
+		{% block content %}
+		{% endblock content %}
+
+
+		<div class="jumbotron text-center" style="margin-bottom:0">
+		  <p>Criado por @samirsaadi</p>
+		</div>
+	</body>
+</html>
