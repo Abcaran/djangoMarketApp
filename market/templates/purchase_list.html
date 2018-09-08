@@ -1,22 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% load staticfiles %}
+
 	<div class="container my-4">
 		<font face="helvetica" color="#4267B2FF"><h2 align="center"><b>Lista de Compras</b></h2></font>
 	</div>
+
+  
+  	<form method='GET'  >
+        <div class="container">
+            <div class="row form-space">
+                <div class="col-xs-12 col-sm-10 custom-input">
+                	<input  type="text" name="nome_produto"
+            				value="{{ request.GET.nome_produto }}"
+            				placeholder="Digite um produto específico">
+    			</div>
+                <div class="col-xs-12 col-sm-2">
+                	<button class="btn btn-primary" type="submit" style="width: 100%">
+                		PESQUISAR
+                	</button>
+            	</div>
+            </div>
+        </div>
+    </form>
+    <br>
 	
 	<div class="container">
-		<table class="table table-hover table-bordered table-primary">
+		<table class="table table-hover table-bordered table-primary align-itens">
 		  <thead class="bg-primary">
-		    <tr>
-		      <th scope="col">#</th>
+		    <tr class="white-td">
+		      <th  scope="col">ID</th>
 		      <th scope="col">Produto</th>
 		      <th scope="col">Quantidade</th>
 		      <th scope="col">Total</th>
 		      <th scope="col">Preço Médio</th>
 		    </tr>
 		  </thead>
-		  <tbody>
+		  <tbody id="myTable">
 		  	{% for purchase in all_purchases %}
 		    <tr onload="funcao('{{ purchase.total_price }}','{{ purchase.amount }}','{{ purchase.id }}')">
 		      <th scope="row">{{ purchase.id }}</th>
@@ -29,6 +51,17 @@
 		  </tbody>
 		</table>
 	</div>
+
+	<!-- <script>
+	$(document).ready(function(){
+		$("#myInput").on("keyup", function() {
+		    var value = $(this).val().toLowerCase();
+		    $("#myTable tr").filter(function() {
+		      	$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		  	});
+		});
+	});
+	</script> -->
 
 {% endblock %}
 

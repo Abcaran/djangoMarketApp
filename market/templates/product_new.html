@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% load staticfiles %}
+
 	<div class="container my-4">
-		<font face="helvetica" color="#4267B2FF"><h2><b>Novo produto</b></h2></font>
+		<font face="helvetica" color="#4267B2FF"><h2><b>Cadastro de produto</b></h2></font>
 	</div>
 
     <div class="container">
     	<div class="row">
     		<div class="col">
-    			<form method="POST" class="post-form">{% csrf_token %}
-        		{{ form.as_p }}
-    			<button type="submit" class="save btn btn-primary my-2">Salvar</button></form>  
+    			<form method="POST" class="post-form">
+                    {% csrf_token %}
+                    <label>Nome do produto</label>
+                        {{ form.name }}
+                    <br>
+                    <button type="submit" style="width: 100%" class="save btn btn-primary my-2">Salvar</button>
+                </form>  
     		</div>
     	</div>
      </div>
